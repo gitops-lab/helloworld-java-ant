@@ -17,8 +17,10 @@ node {
     }
     
     stage('Front-end') {
+        withEnv(env.PATH = "${dockerHome}/bin:${env.PATH}") {
         docker.image('node:16.13.1-alpine').inside {
             sh 'node --version'
+        }
         }
     }
 
