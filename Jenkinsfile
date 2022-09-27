@@ -11,6 +11,12 @@ node {
         writeFile file: "output/uselessfile.md", text: "This file is useless, no need to archive it."
 
     }
+    
+    stage('Front-end') {
+        docker.image('node:16.13.1-alpine').inside {
+            sh 'node --version'
+        }
+    }
 
     // stage ("build output") {
 
