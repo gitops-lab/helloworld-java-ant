@@ -1,5 +1,5 @@
 #!groovy
-node {
+node ('docker-slave') {
     stage ("Create build output") {
             // Make the output directory.
         sh "mkdir -p output"
@@ -17,8 +17,6 @@ node {
     }
     
     stage('Front-end') {
-        def dockerHome = tool 'myDocker'
-        env.PATH = "${dockerHome}/bin:${env.PATH}"
         docker.image('node:16.13.1-alpine').inside {
             sh 'node --version'
         }
